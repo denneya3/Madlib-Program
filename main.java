@@ -163,7 +163,7 @@ public class MyProgram
             finalResult = finalResult+parts[i]+"\n";
         }
         Date date = new Date(); // This object contains the current date value
-        System.out.println("\\u001B[1m"+userName+"'s Madlib ~ "+date+"\n");
+        System.out.println(userName+"'s Madlib ~ "+date+"\n");
         System.out.println(finalResult+"\n This madlib was created by the creative genius, "+userName+". Props to them for creating this masterpiece but adlibz.herokuapp.com truly did all the dirty work of preparing the madlib.");
     }
 }
