@@ -140,7 +140,7 @@ public class MyProgram
                     System.out.println("jeez, you didn't have to write a whole essay");
                     wait(2);
                 }
-                else if (data.length() <= 2){
+                else if ((data.length() <= 2)&(data.contains("numbers")!=true)){
                     System.out.println("Can you actually write something? Whatever let's move on...");
                     wait(2);
                 }
@@ -151,18 +151,19 @@ public class MyProgram
                 }
                 inputtedWords.add(data);
             //}
-
         }
         String madlib = "";
         for (int f = 0; f < inputtedWords.size(); f++){
             madlib = madlib +" "+sentences.get(f)+" "+inputtedWords.get(f);
 
         }
-        madlib.replace(".",". \n"); //not working?..
-
+        String parts[] = madlib.split("\\."); //sometimes buggy with Mrs. Mr. , not HUGEEE issue..
+        String finalResult = "";
+        for (int i = 0; i < parts.length; i++){
+            finalResult = finalResult+parts[i]+"\n";
+        }
         Date date = new Date(); // This object contains the current date value
-        System.out.println(userName+"'s Madlib ~ "+date);
-        System.out.println(madlib+" This madlib was created by the creative genius, "+userName+". Props to them for creating this masterpiece but adlibz.herokuapp.com truly did all the dirty work of preparing the madlib.");
+        System.out.println("\\u001B[1m"+userName+"'s Madlib ~ "+date+"\n");
+        System.out.println(finalResult+"\n This madlib was created by the creative genius, "+userName+". Props to them for creating this masterpiece but adlibz.herokuapp.com truly did all the dirty work of preparing the madlib.");
     }
-
 }
