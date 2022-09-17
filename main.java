@@ -15,7 +15,7 @@ import java.util.Date;
 public class MyProgram
 {
     public static void wait(int ms){
-        ms=750; //*=1000
+        ms=750; //*=1000 | overridden for now
         for (int x = 0; x < 3; x++){
             System.out.print(".");
             try
