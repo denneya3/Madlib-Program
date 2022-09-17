@@ -27,7 +27,7 @@ public class MyProgram
                 Thread.currentThread().interrupt();
             }
         }
-        System.out.println("");
+        System.out.println();
     }
     public static ArrayList[] getMadlib(int min, int max) throws IOException, InterruptedException {
         var uri = URI.create("https://madlibz.herokuapp.com/api/random?minlength="+min+"&maxlength="+max+"/");
@@ -42,10 +42,6 @@ public class MyProgram
                 request,
                 HttpResponse.BodyHandlers.ofString(StandardCharsets.UTF_8)
         );
-        //System.out.println(response.body().getClass().getName());
-
-        String[] lines = response.body().split("\r\n|\r|\n");
-        //System.out.println(lines.length); // counting lines
 
         ArrayList<String> sentences = new ArrayList<String>();
         ArrayList<String> wordTypes = new ArrayList<String>();
@@ -75,35 +71,43 @@ public class MyProgram
         }
         //System.out.println(wordTypes);
         //System.out.println(sentences);
+        System.out.println("Received a madlib with "+sentences.size()+" sentences and "+wordTypes.size()+" words to input!");
         return new ArrayList[]{wordTypes, sentences};
     }
     public static void main(String[] args) throws IOException, InterruptedException {
+        //junk sentences add more personality! :D
+        final String[] junkSentences = {"Hmm okay..","bro ok","Alright.","mm okay","Uhhh that is- okay..", "Okay, lets move on..","Alright.","Okay"};
+        final String[] junkSentences2 = {"pleasee enter a(n) ","put a(n) ","Can you please enter a(n) ","Input a ","Type in a(n)"};
+
         Scanner input = new Scanner(System.in);
         Random rand = new Random();
 
-        System.out.println("Hello! Welcome to Alex's bug-free madlib generator. Say hello!");
+
+        System.out.println("Hello! Welcome to Alex's bug-free madlib generator. Say hello!"+" ~ (1/5)");
         String greetingResponse = input.nextLine(); //maybe utilize this
         wait(rand.nextInt(2));
-        System.out.println("Yeah hi!! What's your name?");
-        String userName = input.nextLine(); //YOU HAVE TO UTILIZE THIS FOR THE PROJECT
+        System.out.println("Yeah hi!! What's your name?"+" ~ (2/5)");
+        String userName = input.nextLine();
         wait(rand.nextInt(2));
-        System.out.println("What should the minimum length of the Madlib be? (Enter an integer)");
+        System.out.println("What should the target minimum length of the Madlib be? (Enter an integer)"+" ~ (3/5)");
         int min = input.nextInt();
         wait(rand.nextInt(2));
-        System.out.println("What should the maximum length of the Madlib be? (Enter an integer)");
+        System.out.println("What should the target maximum length of the Madlib be? (Enter an integer)"+" ~ (4/5)");
         int max = input.nextInt();
         wait(rand.nextInt(2));
+        System.out.println("Enter an interesting adjective. ~ (5/5)");
+        String endingAdjective = input.nextLine();
+
         input.nextLine(); //https://stackoverflow.com/questions/23450524/java-scanner-doesnt-wait-for-user-input
-        if ((min <= 0)&(max<=0)&(min>=100)&(max>=100)&(max<=min)){
+        wait(rand.nextInt(2));
+        if ((min<=0)||(max<=0)||(min>=100)||(max>=100)||(max<=min)){
             System.out.println("Apparently you screwed something up and your minimum and/or maximum length(s) are invalid. I'll just fix it for you...");
             min = 5;
             max = 25;
             wait(rand.nextInt(2));
         }
+
         ArrayList[] madLib = getMadlib(min,max);
-        //junk sentences add more personality! :D
-        final String[] junkSentences = {"Hmm okay..","bro ok","Alright.","mm okay","Uhhh that is- okay..", "Okay, lets move on.."};
-        final String[] junkSentences2 = {"pleasee enter a ","put a ","Can you please enter a ","Input a "};
         ArrayList sentences = madLib[1];
         ArrayList wordTypes = madLib[0];
         //number will make it so it is the same adjective | cannot be greater than its index
@@ -111,24 +115,8 @@ public class MyProgram
         ArrayList<String> inputtedWords = new ArrayList<String>();
 
         for (int i = 0; i < wordTypes.size(); i++){
-            /*if ((wordTypes.get(i)).matches(".*\\d.*")){
-                continue;
-                //referencing a previous
-                //Scanner in = new Scanner(wordTypes.get(i)).useDelimiter("[^0-9]+"); //stack overflow
-                int integer = in.nextInt();
-                if (integer < i){
-                    String data = inputtedWords.get(integer);
-                    inputtedWords.add(data);
-                }
-                else{
-                    System.out.println("Apparently the person who made the madlib doesn't know what they are doing! An exception occured.");
-                    return;
-                }
-
-            }*/
-            //if{
                 int randInt = rand.nextInt(junkSentences2.length-1); // is 0 the first index in a table java?
-                System.out.println(junkSentences2[randInt]+wordTypes.get(i)+".");
+                System.out.println(junkSentences2[randInt]+wordTypes.get(i)+". ~ ("+(i+1)+"/"+wordTypes.size()+")");
 
                 if (i == 0){
                     //Thread.sleep(5000);
@@ -140,7 +128,7 @@ public class MyProgram
                     System.out.println("jeez, you didn't have to write a whole essay");
                     wait(2);
                 }
-                else if ((data.length() <= 2)&(data.contains("numbers")!=true)){
+                else if ((data.length() <= 2)&(!data.contains("numbers"))){
                     System.out.println("Can you actually write something? Whatever let's move on...");
                     wait(2);
                 }
@@ -150,20 +138,20 @@ public class MyProgram
                     wait(3);
                 }
                 inputtedWords.add(data);
-            //}
         }
         String madlib = "";
         for (int f = 0; f < inputtedWords.size(); f++){
             madlib = madlib +" "+sentences.get(f)+" "+inputtedWords.get(f);
 
         }
-        String parts[] = madlib.split("\\."); //sometimes buggy with Mrs. Mr. , not HUGEEE issue..
-        String finalResult = "";
-        for (int i = 0; i < parts.length; i++){
-            finalResult = finalResult+parts[i]+"\n";
-        }
+        String parts[] = madlib.split("\\."); //sometimes buggy with Mrs. Mr. , not HUGEEE issue.. Also with question marks and exclamation marks
+        //String finalResult = "";
         Date date = new Date(); // This object contains the current date value
-        System.out.println(userName+"'s Madlib ~ "+date+"\n");
-        System.out.println(finalResult+"\n This madlib was created by the creative genius, "+userName+". Props to them for creating this masterpiece but adlibz.herokuapp.com truly did all the dirty work of preparing the madlib.");
+        System.out.println("\n"+"--------------------------------"+"\n"+userName+"'s Madlib ~ "+date+"\n");
+        for (int i = 0; i < parts.length; i++){
+            //finalResult = finalResult+parts[i]+". \n";
+            System.out.println(parts[i]+".");
+        }
+        System.out.println("\n This madlib was created by the "+endingAdjective+" genius, "+userName+". Props to them for creating this masterpiece but madlibz.herokuapp.com truly did all the dirty work of preparing the Madlib."+"\n"+"--------------------------------");
     }
 }
