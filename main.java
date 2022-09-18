@@ -12,7 +12,7 @@ import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.util.Date;
 
-public class MyProgram
+public class MadlibGenerator
 {
     public static void wait(int ms){
         ms=750; //*=1000 | overridden for now
