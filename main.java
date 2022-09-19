@@ -163,6 +163,6 @@ public class MyProgram //MadlibGenerator
             String bit = parts[i]+".";
             System.out.println(bit.replaceAll("\\n*",""));
         }
-        System.out.println("\nThis madlib was created by the "+endingAdjective+" genius, "+userName+". Props to them for creating this masterpiece but madlibz.herokuapp.com truly did all the dirty work of preparing the Madlib."+"\n"+"--------------------------------");
+        System.out.println("\nThis madlib was created by the "+endingAdjective+" genius, "+userName+". Props to them for creating this masterpiece although madlibz.herokuapp.com truly did all the dirty work of preparing the Madlib."+"\n"+"--------------------------------");
     }
 }
