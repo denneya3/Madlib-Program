@@ -55,18 +55,18 @@ public class MyProgram //MadlibGenerator
             if (line.contains("[")){ //check if it is going to new line type
                 if (line.contains("blanks")){ //word types | redundant
                     mode = "wordTypes";
-                    }
+                }
                 else if (line.contains("value")){ //sentences
                     mode = "sentences";
                 }
             }
             else if ((line.contains("\""))&(line.contains(":")==false)){
-                    if (mode == "wordTypes"){
-                        wordTypes.add(line.replaceAll("\",", "").trim().replace("\"","")); //commas............................
-                    }
-                    else if (mode == "sentences"){ //elseif just in case there is more added
-                        sentences.add(line.replaceAll("\",", "").trim().replace("\"",""));
-                    }
+                if (mode == "wordTypes"){
+                    wordTypes.add(line.replaceAll("\",", "").trim().replace("\"","")); //commas............................
+                }
+                else if (mode == "sentences"){ //elseif just in case there is more added
+                    sentences.add(line.replaceAll("\",", "").trim().replace("\"",""));
+                }
             }
         }
         //System.out.println(wordTypes);
@@ -116,6 +116,7 @@ public class MyProgram //MadlibGenerator
             wait(rand.nextInt(2));
         }
 
+        System.out.println("Please wait, fetching a Madlib from the depths of the dark web. This requires an internet connection.");
         ArrayList[] madLib = getMadlib(min,max);
         ArrayList sentences = madLib[1];
         ArrayList wordTypes = madLib[0];
@@ -124,34 +125,34 @@ public class MyProgram //MadlibGenerator
         ArrayList<String> inputtedWords = new ArrayList<String>();
 
         for (int i = 0; i < wordTypes.size(); i++){
-                int randInt = rand.nextInt(junkSentences2.length-1); // is 0 the first index in a table java?
-                System.out.println(junkSentences2[randInt]+wordTypes.get(i)+". ~ ("+(i+1)+"/"+wordTypes.size()+")");
+            int randInt = rand.nextInt(junkSentences2.length-1); // is 0 the first index in a table java?
+            System.out.println(junkSentences2[randInt]+wordTypes.get(i)+". ~ ("+(i+1)+"/"+wordTypes.size()+")");
 
-                if (i == 0){
-                    //Thread.sleep(5000);
-                }
-                String data = input.nextLine();
+            if (i == 0){
+                //Thread.sleep(5000);
+            }
+            String data = input.nextLine();
 
-                wait(rand.nextInt(2));
-                if (data.length() > 20){
-                    System.out.println("jeez, you didn't have to write a whole essay");
-                    wait(2);
-                }
-                else if ((data.length() <= 2)&(!data.contains("numbers"))){
-                    System.out.println("Can you actually write something? Whatever let's move on...");
-                    wait(2);
-                }
-                else{
-                    randInt = rand.nextInt(junkSentences.length-1);
-                    System.out.println(junkSentences[randInt]);
-                    wait(3);
-                }
-                inputtedWords.add(data);
+            wait(rand.nextInt(2));
+            if (data.length() > 20){
+                System.out.println("jeez, you didn't have to write a whole essay");
+                wait(2);
+            }
+            else if ((data.length() <= 2)&(!data.contains("numbers"))){
+                System.out.println("Can you actually write something? Whatever let's move on...");
+                wait(2);
+            }
+            else{
+                randInt = rand.nextInt(junkSentences.length-1);
+                System.out.println(junkSentences[randInt]);
+                wait(3);
+            }
+            inputtedWords.add(data);
         }
         String madlib = "";
         for (int f = 0; f < inputtedWords.size(); f++){
-            madlib = madlib +" "+sentences.get(f)+" "+inputtedWords.get(f);
-
+            //madlib = madlib +" "+sentences.get(f)+" "+inputtedWords.get(f);
+            madlib = madlib +sentences.get(f)+" "+inputtedWords.get(f);
         }
         String parts[] = madlib.split("\\. "); //sometimes buggy with Mrs. Mr. , not HUGEEE issue.. Also with question marks and exclamation marks
         //String finalResult = ""; //old code
@@ -159,8 +160,9 @@ public class MyProgram //MadlibGenerator
         System.out.println("\n"+"--------------------------------"+"\n"+userName+"'s Madlib ~ "+date+"\n");
         for (int i = 0; i < parts.length; i++){
             //finalResult = finalResult+parts[i]+". \n"; //experienced better with simply printing each line
-            System.out.println(parts[i]+".");
+            String bit = parts[i]+".";
+            System.out.println(bit.replaceAll("\\n*",""));
         }
-        System.out.println("\n This madlib was created by the "+endingAdjective+" genius, "+userName+". Props to them for creating this masterpiece but madlibz.herokuapp.com truly did all the dirty work of preparing the Madlib."+"\n"+"--------------------------------");
+        System.out.println("\nThis madlib was created by the "+endingAdjective+" genius, "+userName+". Props to them for creating this masterpiece but madlibz.herokuapp.com truly did all the dirty work of preparing the Madlib."+"\n"+"--------------------------------");
     }
 }
