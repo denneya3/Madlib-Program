@@ -93,10 +93,10 @@ public class MyProgram //MadlibGenerator
         int max= 25;
         try {
             System.out.println("What should the target minimum length of the Madlib be? (Enter an integer)" + " ~ (3/5)");
-            min = input.nextInt();
+            min = input.nextInt(); //
             wait(rand.nextInt(2));
             System.out.println("What should the target maximum length of the Madlib be? (Enter an integer)" + " ~ (4/5)");
-            max = input.nextInt();
+            max = input.nextInt(); //
         }
         catch(Exception e){
             System.out.println("That's not an integer... Go back to algebra 1 then you can talk to me!");
@@ -105,11 +105,8 @@ public class MyProgram //MadlibGenerator
         System.out.println("Enter an interesting adjective. ~ (5/5)");
 
         String endingAdjective;
-        input.nextLine(); //scanner class problems
+        input.nextLine(); //clearing the buffer!
         endingAdjective = input.nextLine();
-
-        //input.nextLine(); //https://stackoverflow.com/questions/23450524/java-scanner-doesnt-wait-for-user-input
-        //System.out.println(endingAdjective);
 
         wait(rand.nextInt(2));
         if ((min<=0)||(max<=0)||(min>=100)||(max>=100)||(max<=min)){
@@ -157,11 +154,11 @@ public class MyProgram //MadlibGenerator
 
         }
         String parts[] = madlib.split("\\. "); //sometimes buggy with Mrs. Mr. , not HUGEEE issue.. Also with question marks and exclamation marks
-        //String finalResult = "";
+        //String finalResult = ""; //old code
         Date date = new Date(); // This object contains the current date value
         System.out.println("\n"+"--------------------------------"+"\n"+userName+"'s Madlib ~ "+date+"\n");
         for (int i = 0; i < parts.length; i++){
-            //finalResult = finalResult+parts[i]+". \n";
+            //finalResult = finalResult+parts[i]+". \n"; //experienced better with simply printing each line
             System.out.println(parts[i]+".");
         }
         System.out.println("\n This madlib was created by the "+endingAdjective+" genius, "+userName+". Props to them for creating this masterpiece but madlibz.herokuapp.com truly did all the dirty work of preparing the Madlib."+"\n"+"--------------------------------");
