@@ -2,6 +2,8 @@ Hello Mr. Smith! Hopefully you are Mr. Smith and not a student from the future w
 
 My program makes an HTTP Request to a website to retrieve a random Madlib template. It then asks the user a series of questions in an informal manner.
 
+**After every line, you may be promted to type something. Do not type until the ... are over and a prompt is given. You'll figure it out!**
+
 ## Example Madlib Produced:
 
 	--------------------------------
