@@ -12,7 +12,7 @@ import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.util.Date;
 
-public class MadlibGenerator
+public class MyProgram //MadlibGenerator
 {
     public static void wait(int ms){
         ms=750; //*=1000 | overridden for now
@@ -89,16 +89,28 @@ public class MadlibGenerator
         System.out.println("Yeah hi!! What's your name?"+" ~ (2/5)");
         String userName = input.nextLine();
         wait(rand.nextInt(2));
-        System.out.println("What should the target minimum length of the Madlib be? (Enter an integer)"+" ~ (3/5)");
-        int min = input.nextInt();
-        wait(rand.nextInt(2));
-        System.out.println("What should the target maximum length of the Madlib be? (Enter an integer)"+" ~ (4/5)");
-        int max = input.nextInt();
+        int min = 5;
+        int max= 25;
+        try {
+            System.out.println("What should the target minimum length of the Madlib be? (Enter an integer)" + " ~ (3/5)");
+            min = input.nextInt();
+            wait(rand.nextInt(2));
+            System.out.println("What should the target maximum length of the Madlib be? (Enter an integer)" + " ~ (4/5)");
+            max = input.nextInt();
+        }
+        catch(Exception e){
+            System.out.println("That's not an integer... Go back to algebra 1 then you can talk to me!");
+        }
         wait(rand.nextInt(2));
         System.out.println("Enter an interesting adjective. ~ (5/5)");
-        String endingAdjective = input.nextLine();
 
-        input.nextLine(); //https://stackoverflow.com/questions/23450524/java-scanner-doesnt-wait-for-user-input
+        String endingAdjective;
+        input.nextLine(); //scanner class problems
+        endingAdjective = input.nextLine();
+
+        //input.nextLine(); //https://stackoverflow.com/questions/23450524/java-scanner-doesnt-wait-for-user-input
+        //System.out.println(endingAdjective);
+
         wait(rand.nextInt(2));
         if ((min<=0)||(max<=0)||(min>=100)||(max>=100)||(max<=min)){
             System.out.println("Apparently you screwed something up and your minimum and/or maximum length(s) are invalid. I'll just fix it for you...");
