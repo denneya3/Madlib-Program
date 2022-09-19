@@ -156,7 +156,7 @@ public class MyProgram //MadlibGenerator
             madlib = madlib +" "+sentences.get(f)+" "+inputtedWords.get(f);
 
         }
-        String parts[] = madlib.split("\\."); //sometimes buggy with Mrs. Mr. , not HUGEEE issue.. Also with question marks and exclamation marks
+        String parts[] = madlib.split("\\. "); //sometimes buggy with Mrs. Mr. , not HUGEEE issue.. Also with question marks and exclamation marks
         //String finalResult = "";
         Date date = new Date(); // This object contains the current date value
         System.out.println("\n"+"--------------------------------"+"\n"+userName+"'s Madlib ~ "+date+"\n");
